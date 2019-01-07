@@ -1,22 +1,23 @@
+const path = require('path')
 const webpack = require('webpack')
 
 module.exports = {
   entry: './app.js',
+  mode: 'development',
   output: {
+    path: path.resolve(__dirname, 'build'),
     filename: './build.js'
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
-        query: {
-          presets: [
-            ['es2015', { modules: false }]
-          ]
-        }
+        use: ['babel-loader']
       }
     ]
+  },
+  stats: {
+    colors: true
   }
 }
